@@ -9,8 +9,8 @@ import (
 	"reflect"
 	"strconv"
 	"time"
-
-	"github.com/denisenkom/go-mssqldb/internal/cp"
+	// Have to change this to make test executable
+	"github.com/xiaoyumu/go-mssqldb/internal/cp"
 )
 
 // fixed-length data types

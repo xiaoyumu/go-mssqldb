@@ -539,7 +539,11 @@ func (s *Stmt) makeRPCParams(args []namedValue, offset int) ([]param, []string, 
 			name = fmt.Sprintf("@p%d", val.Ordinal)
 		}
 		params[i+offset].Name = name
-		decls[i] = fmt.Sprintf("%s %s", name, makeDecl(params[i+offset].ti))
+		paraDescriptor := ""
+		if _, isOutput := val.Value.(sql.Out); isOutput {
+			paraDescriptor = "output "
+		}
+		decls[i] = fmt.Sprintf("%s %s %s", name, makeDecl(params[i+offset].ti), paraDescriptor)
 	}
 	return params, decls, nil
 }
